@@ -48,9 +48,9 @@ public class WidgetUtil {
 
     public static void ptrAddUIHeader(Context context,
                                       PtrFrameLayout ptrContainer,
-                                      SimpleListener listener,
+                                      SimpleListener ptrEndListener,
                                       int bkgColorId) {
-        final MaterialHeader header = new MaterialHeaderEx(context, listener);
+        final MaterialHeader header = new MaterialHeaderWithPtrEndListener(context, ptrEndListener);
         int[] colors = context.getResources().getIntArray(R.array.google_colors);
         header.setColorSchemeColors(colors);
         header.setLayoutParams(new PtrFrameLayout.LayoutParams(-1, -2));
@@ -66,11 +66,12 @@ public class WidgetUtil {
         ptrContainer.addPtrUIHandler(header);
     }
 
-    private static class MaterialHeaderEx extends in.srain.cube.views.ptr.header.MaterialHeader {
+    private static class MaterialHeaderWithPtrEndListener extends in.srain.cube.views.ptr.header.MaterialHeader {
 
         private SimpleListener listener;
+        private boolean isPtrDone;
 
-        public MaterialHeaderEx(Context context, SimpleListener listener) {
+        public MaterialHeaderWithPtrEndListener(Context context, SimpleListener listener) {
             super(context);
             this.listener = listener;
         }
@@ -78,9 +79,20 @@ public class WidgetUtil {
         @Override
         public void onUIReset(PtrFrameLayout frame) {
             super.onUIReset(frame);
-            if (listener != null) {
+
+            if (isPtrDone && listener != null) {
                 listener.callback();
             }
+            isPtrDone = false;
+        }
+
+
+
+        @Override
+        public void onUIRefreshComplete(PtrFrameLayout frame) {
+            super.onUIRefreshComplete(frame);
+
+            isPtrDone = true;
         }
     }
 
