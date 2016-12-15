@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion ANDROID_BUILD_SDK_VERSION as int
+    buildToolsVersion ANDROID_BUILD_TOOLS_VERSION
+
+    defaultConfig {
+        applicationId "com.example.jzyu.weplantplayground"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile project(':library-LoadMoreFinal')
+
+    compile "com.android.support:appcompat-v7:${SUPPORT_LIB_VERSION}"
+    compile "com.android.support:recyclerview-v7:${SUPPORT_LIB_VERSION}"
+    compile "com.android.support:support-v13:${SUPPORT_LIB_VERSION}"
+    //compile "com.android.support:design:${SUPPORT_LIB_VERSION}"
+
+    compile 'com.jakewharton:butterknife:7.0.1'
+    compile 'in.srain.cube:ultra-ptr:1.0.11'
+    compile 'cn.bingoogolapple:bga-badgeview:1.0.2@aar'
+    compile 'com.zhy:base-rvadapter:3.0.2'
+
+    testCompile 'junit:junit:4.12'
+}

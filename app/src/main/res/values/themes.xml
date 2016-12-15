@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ThemeBase" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:screenOrientation">portrait</item>
+        <item name="android:windowBackground">@color/window_bg</item>
+        <item name="android:textColor">@color/text_main</item>
+        <item name="android:textColorLink">@color/text_link_color</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+        <item name="android:textSize">@dimen/content_text_size</item>
+        <item name="android:scrollbarThumbVertical">@drawable/scrollbar</item>
+        <item name="colorControlNormal">@color/white</item> <!--toolbar 右侧选项菜单点点点颜色-->
+
+        <!--<item name="android:windowAnimationStyle">@style/windowAnim</item>-->
+    </style>
+
+    <!--<style name="windowAnim" parent="@android:style/Animation.Translucent">
+        <item name="android:windowEnterAnimation">@android:anim/slide_in_left</item>
+        <item name="android:windowExitAnimation">@android:anim/slide_out_right</item>
+    </style>-->
+
+    <style name="AppTheme" parent="ThemeBase"/>
+</resources>

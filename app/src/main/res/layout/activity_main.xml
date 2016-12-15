@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context="com.example.jzyu.weplantplayground.MainActivity">
+
+    <com.wohuizhong.client.app.widget.TitleBarView
+        style="@style/TitleBar"
+        app:title_text="Weplant Playground"/>
+
+    <LinearLayout style="@style/TestButtonGroup" android:layout_marginTop="20dp">
+        <Button style="@style/TestButton" android:text="Toolbar autoHide" android:onClick="onClickToolbarAutoHide"/>
+    </LinearLayout>
+
+    <LinearLayout style="@style/TestButtonGroup" android:layout_marginTop="20dp">
+        <Button style="@style/TestButton" android:text="Gesture Normal" android:onClick="onClickGestureNormal"/>
+        <Button style="@style/TestButton" android:text="Gesture ScrollView" android:onClick="onClickGestureScrollView"/>
+    </LinearLayout>
+
+    <LinearLayout style="@style/TestButtonGroup" android:layout_marginTop="20dp">
+        <Button style="@style/TestButton" android:text="Ptr Bubble Msg" android:onClick="onClickPtrBubbleMsg"/>
+    </LinearLayout>
+</LinearLayout>

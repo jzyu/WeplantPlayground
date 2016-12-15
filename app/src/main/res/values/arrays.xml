@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer-array name="google_colors">
+        <!--<item>#FFC93437</item>
+        <item>#FF375BF1</item>
+        <item>#FFF7D23E</item>-->
+        <item>@color/text_highlight</item>
+    </integer-array>
+</resources>

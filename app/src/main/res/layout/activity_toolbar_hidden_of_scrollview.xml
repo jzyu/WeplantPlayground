@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.wohuizhong.client.app.widget.TitleBarView
+        android:id="@+id/titlebar"
+        style="@style/TitleBar.Back"
+        custom:title_text="文章详情" />
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3dp"
+            android:text="@string/content_text"
+            android:id="@+id/textView" />
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/container_bottom_bar"
+        style="@style/BottomBarGroup">
+        <TextView
+            style="@style/BottomBarItem"
+            android:drawableTop="@drawable/btn_comment"
+            android:text="投票" />
+        <TextView
+            style="@style/BottomBarItem"
+            android:drawableTop="@drawable/btn_favor"
+            android:text="收藏" />
+        <TextView
+            style="@style/BottomBarItem"
+            android:drawableTop="@drawable/btn_comment"
+            android:text="评论 6" />
+    </LinearLayout>
+
+</LinearLayout>

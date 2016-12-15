@@ -1,0 +1,3 @@
+include ':app', 'library-LoadMoreFinal'
+
+project(':library-LoadMoreFinal').projectDir = new File(settingsDir,    '../WePlant-Android/library-LoadMoreFinal')

@@ -1,0 +1,68 @@
+<resources>
+
+    <style name="TestButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <style name="TestButtonGroup">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginBottom">10dp</item>
+    </style>
+
+    <style name="TitleBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+        <item name="title_height">@dimen/title_height</item>
+        <item name="title_lr_image_width">@dimen/titlebar_lr_touch_width</item>
+        <item name="title_lr_background">@drawable/selector_titlebar_btn_bg</item>
+        <item name="title_underline">true</item>
+        <item name="title_underline_color">@color/divide_line</item>
+        <item name="title_center_text_color">@color/text_strong</item>
+        <item name="title_center_text_size">18sp</item>
+        <item name="title_right_text_size">15sp</item>
+        <item name="title_right_text_color">@color/text_highlight</item>
+        <item name="title_right_text_padding">15dp</item>
+    </style>
+    <style name="TitleBar.Back">
+        <item name="title_left_image">@drawable/icon_back_black</item>
+    </style>
+
+    <style name="BottomBarGroup">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/detail_bottom_bar_height</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:background">@drawable/footer_btn</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="BottomBarItem">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:drawablePadding">4dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="PtrFrame">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="ptr_duration_to_close">200</item>
+        <item name="ptr_duration_to_close_header">1000</item>
+        <item name="ptr_keep_header_when_refresh">true</item>
+        <item name="ptr_pull_to_fresh">false</item>
+        <item name="ptr_ratio_of_header_height_to_refresh">1.2</item>
+        <item name="ptr_resistance">1.2</item>
+    </style>
+
+    <style name="timelineListTop">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">8dp</item>
+        <item name="android:background">@color/divide_line</item>
+    </style>
+</resources>
