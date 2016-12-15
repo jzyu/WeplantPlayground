@@ -11,8 +11,9 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.TextView;
 
 import com.wohuizhong.client.app.util.SimpleListener;
-import com.wohuizhong.client.app.util.WidgetUtil;
 import com.wohuizhong.client.app.util.StringUtil;
+import com.wohuizhong.client.app.util.WidgetUtil;
+import com.wohuizhong.client.app.widget.TitleBarView;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
@@ -32,6 +33,8 @@ public class PtrBubbleMsgActivity extends AppCompatActivity {
     TextView tvBubble;
     @Bind(R.id.ptrFrame)
     PtrFrameLayout ptrFrame;
+    @Bind(R.id.titlebar)
+    TitleBarView titlebar;
 
     private String refreshBubbleMsg;
     private View topicHeader;
@@ -65,12 +68,12 @@ public class PtrBubbleMsgActivity extends AppCompatActivity {
                 refreshBubbleMsg = "测试一下";
                 makeBubbleMessage(refreshBubbleMsg);
             }
-        }, R.color.divide_line);
+        }, R.color.divide_line, 4);
 
         ptrFrame.setPtrHandler(new PtrDefaultHandler() {
             @Override
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-                if (! recyclerView.canScrollVertically(-1)) {
+                if (!recyclerView.canScrollVertically(-1)) {
                     return super.checkCanDoRefresh(frame, content, header);
                 } else {
                     return false;
@@ -87,6 +90,24 @@ public class PtrBubbleMsgActivity extends AppCompatActivity {
                 }, 2000);
             }
         });
+
+        titlebar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                postRefresh();
+            }
+        });
+    }
+
+    private void postRefresh() {
+        recyclerView.post(new Runnable() {
+            @Override
+            public void run() {
+                if (! ptrFrame.isRefreshing()) {
+                    ptrFrame.autoRefresh();
+                }
+            }
+        });
     }
 
     private void makeBubbleMessage(String message) {
@@ -99,7 +120,7 @@ public class PtrBubbleMsgActivity extends AppCompatActivity {
                 .ofFloat(tvBubble, "translationY", -tvBubble.getHeight(), 0)
                 .setDuration(600);
         animator.setInterpolator(new AccelerateDecelerateInterpolator());
-        animator.addListener(new WidgetUtil.AnimatorEndListener(){
+        animator.addListener(new WidgetUtil.AnimatorEndListener() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 ObjectAnimator animator = ObjectAnimator

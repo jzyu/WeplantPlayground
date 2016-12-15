@@ -49,19 +49,20 @@ public class WidgetUtil {
     public static void ptrAddUIHeader(Context context,
                                       PtrFrameLayout ptrContainer,
                                       SimpleListener ptrEndListener,
-                                      int bkgColorId) {
+                                      int bkgColorId,
+                                      int paddingBottomDp) {
         final MaterialHeader header = new MaterialHeaderWithPtrEndListener(context, ptrEndListener);
         int[] colors = context.getResources().getIntArray(R.array.google_colors);
+
         header.setColorSchemeColors(colors);
         header.setLayoutParams(new PtrFrameLayout.LayoutParams(-1, -2));
-        header.setPadding(0, PtrLocalDisplay.dp2px(15), 0, PtrLocalDisplay.dp2px(2));
+        header.setPadding(0, PtrLocalDisplay.dp2px(12), 0, PtrLocalDisplay.dp2px(
+                paddingBottomDp == 0 ? 12 : paddingBottomDp));
         if (bkgColorId > 0) {
             header.setBackgroundColor(CompatUtil.getColor(context, bkgColorId));
         }
         header.setPtrFrameLayout(ptrContainer);
 
-        //ptrContainer.setLoadingMinTime(500);         //default is 500ms
-        //ptrContainer.setDurationToCloseHeader(1000); //default is 1000ms
         ptrContainer.setHeaderView(header);
         ptrContainer.addPtrUIHandler(header);
     }

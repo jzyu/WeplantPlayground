@@ -9,6 +9,7 @@
     tools:context=".PtrBubbleMsgActivity">
 
     <com.wohuizhong.client.app.widget.TitleBarView
+        android:id="@+id/titlebar"
         style="@style/TitleBar.Back"
         custom:title_text="Ptr bubble msg"/>
 
