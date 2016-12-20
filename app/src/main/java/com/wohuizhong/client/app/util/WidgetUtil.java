@@ -17,7 +17,7 @@ import in.srain.cube.views.ptr.util.PtrLocalDisplay;
  */
 
 public class WidgetUtil {
-    public static void setViewWidthHeight(View v, int width, int height) {
+    public static void resize(View v, int width, int height) {
         ViewGroup.MarginLayoutParams lp = (ViewGroup.MarginLayoutParams) v.getLayoutParams();
         if (width >= 0) lp.width = width;
         if (height >= 0) lp.height = height;

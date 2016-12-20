@@ -52,7 +52,7 @@ public class PtrBubbleMsgActivity extends AppCompatActivity {
         String[] strings = new String[]{"one", "two", "three", "four", "five", "six"};
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        CommonAdapter<String> rvAdapter = new CommonAdapter<String>(this, R.layout.row_ptr_bubble_msg, Arrays.asList(strings)) {
+        CommonAdapter<String> rvAdapter = new CommonAdapter<String>(this, R.layout.row_text, Arrays.asList(strings)) {
             @Override
             protected void convert(ViewHolder holder, String s, int position) {
                 holder.setVisible(R.id.divider_list_top, position == 0);
