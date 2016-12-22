@@ -222,7 +222,14 @@ public class ShortVideoView extends FrameLayout {
             public void onPrepared(MediaPlayer mp) {
                 L.d(TAG, "oPrepared");
                 mp.setLooping(false);
-                //mp.setVolume(0, 0);
+                mp.setVolume(0, 0);
+
+                mp.setOnBufferingUpdateListener(new MediaPlayer.OnBufferingUpdateListener() {
+                    @Override
+                    public void onBufferingUpdate(MediaPlayer mp, int percent) {
+                        L.v(TAG, " MediaPlayer - onBufferingUpdate, percent = " + percent + ", videoUrl = " + videoUrl);
+                    }
+                });
 
                 mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
                     @Override

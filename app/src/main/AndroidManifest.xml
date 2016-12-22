@@ -21,7 +21,8 @@
         <activity android:name=".ToolbarHiddenOfScrollviewActivity" />
         <activity android:name=".GestureNormalActivity" />
         <activity android:name=".GestureScrollViewActivity" />
-        <activity android:name=".PtrBubbleMsgActivity"></activity>
+        <activity android:name=".PtrBubbleMsgActivity" />
+        <activity android:name=".VideoListActivity"></activity>
     </application>
 
 </manifest>

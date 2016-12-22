@@ -13,6 +13,10 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
+        <LinearLayout style="@style/TestButtonGroup" android:layout_marginTop="20dp">
+            <Button style="@style/TestButton" android:text="List Video" android:onClick="onClickListVideo"/>
+        </LinearLayout>
+
         <TextView style="@style/WrapWrap" android:text="-- Video --" />
         <com.wohuizhong.client.app.widget.ShortVideoView
             android:id="@+id/feed_video"

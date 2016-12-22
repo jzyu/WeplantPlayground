@@ -85,4 +85,8 @@ public class MainActivity extends AppCompatActivity {
     public void onClickFeedVideoReplay(View view) {
         feedVideo.replay();
     }
+
+    public void onClickListVideo(View view) {
+        startActivity(new Intent(this, VideoListActivity.class));
+    }
 }
