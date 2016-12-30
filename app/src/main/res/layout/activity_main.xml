@@ -14,26 +14,7 @@
         android:gravity="center_horizontal">
 
         <LinearLayout style="@style/TestButtonGroup" android:layout_marginTop="20dp">
-            <Button style="@style/TestButton" android:text="List Video" android:onClick="onClickListVideo"/>
-        </LinearLayout>
-
-        <TextView style="@style/WrapWrap" android:text="-- Video --" />
-        <com.wohuizhong.client.app.widget.ShortVideoView
-            android:id="@+id/feed_video"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <LinearLayout style="@style/TestButtonGroup">
-            <Button style="@style/TestButton" android:onClick="onClickFeedVideoPlay" android:text="play" />
-            <Button style="@style/TestButton" android:onClick="onClickFeedVideoPause" android:text="pause" />
-            <Button style="@style/TestButton" android:onClick="onClickFeedVideoReplay" android:text="rePlay" />
-        </LinearLayout>
-
-        <LinearLayout style="@style/TestButtonGroup" android:layout_marginTop="20dp">
             <Button style="@style/TestButton" android:text="Ptr Bubble Msg" android:onClick="onClickPtrBubbleMsg"/>
-        </LinearLayout>
-
-        <LinearLayout style="@style/TestButtonGroup" android:layout_marginTop="20dp">
-            <Button style="@style/TestButton" android:text="Toolbar autoHide" android:onClick="onClickToolbarAutoHide"/>
         </LinearLayout>
 
         <LinearLayout style="@style/TestButtonGroup" android:layout_marginTop="20dp">

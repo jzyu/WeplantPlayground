@@ -1,3 +1,3 @@
-include ':app', 'library-LoadMoreFinal', ':library-video-list-player', ':demo-video-list-player'
+include ':app', 'library-LoadMoreFinal'
 
-project(':library-LoadMoreFinal').projectDir = new File(settingsDir,    '../WePlant-Android/library-LoadMoreFinal')
+project(':library-LoadMoreFinal').projectDir = new File(settingsDir, '../WePlant-Android/library-LoadMoreFinal')
