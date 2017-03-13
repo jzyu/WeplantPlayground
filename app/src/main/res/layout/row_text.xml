@@ -3,15 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@color/white">
 
-    <View android:id="@+id/divider_list_top" style="@style/timelineListTop"/>
+    <!--<View android:id="@+id/divider_list_top" style="@style/timelineListTop"/>-->
 
     <TextView
         android:id="@android:id/text1"
         tools:text="One"
+        android:textSize="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="50dp"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         android:gravity="center_vertical"
         android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"

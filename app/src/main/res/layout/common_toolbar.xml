@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:toolbar="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        toolbar:navigationIcon="@drawable/icon_back_black"
+        toolbar:title="标题"
+        toolbar:titleTextColor="@color/title_text"
+        toolbar:actionMenuTextColor="@android:color/holo_green_light"
+        >
+
+    </android.support.v7.widget.Toolbar>
+</LinearLayout>

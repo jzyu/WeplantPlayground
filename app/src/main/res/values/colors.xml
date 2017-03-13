@@ -110,4 +110,6 @@
     <color name="cube_holo_green_dark">#ff669900</color>
     <color name="cube_holo_blue_dark">#ff0099cc</color>
     <color name="cube_holo_red_dark">#ffcc0000</color>
+
+    <color name="mask_light_green">#10009000</color>
 </resources>

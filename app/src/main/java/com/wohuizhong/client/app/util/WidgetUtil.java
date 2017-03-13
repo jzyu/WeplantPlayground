@@ -2,13 +2,17 @@ package com.wohuizhong.client.app.util;
 
 import android.animation.Animator;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.jzyu.weplantplayground.R;
+import com.wohuizhong.client.app.widget.MyMaterialHeader;
 
 import in.srain.cube.views.ptr.PtrFrameLayout;
-import in.srain.cube.views.ptr.header.MaterialHeader;
 import in.srain.cube.views.ptr.util.PtrLocalDisplay;
 
 /**
@@ -51,7 +55,7 @@ public class WidgetUtil {
                                       SimpleListener ptrEndListener,
                                       int bkgColorId,
                                       int paddingBottomDp) {
-        final MaterialHeader header = new MaterialHeaderWithPtrEndListener(context, ptrEndListener);
+        final MyMaterialHeader header = new MaterialHeaderWithPtrEndListener(context, ptrEndListener);
         int[] colors = context.getResources().getIntArray(R.array.google_colors);
 
         header.setColorSchemeColors(colors);
@@ -63,11 +67,18 @@ public class WidgetUtil {
         }
         header.setPtrFrameLayout(ptrContainer);
 
+        //ptrContainer.setLoadingMinTime(500);         //default is 500ms
+        //ptrContainer.setDurationToCloseHeader(1000); //default is 1000ms
         ptrContainer.setHeaderView(header);
         ptrContainer.addPtrUIHandler(header);
     }
 
-    private static class MaterialHeaderWithPtrEndListener extends in.srain.cube.views.ptr.header.MaterialHeader {
+
+    public static void ptrAddUIHeader(Context context, PtrFrameLayout ptrContainer) {
+        ptrAddUIHeader(context, ptrContainer, null, 0, 0);
+    }
+
+    private static class MaterialHeaderWithPtrEndListener extends MyMaterialHeader {
 
         private SimpleListener listener;
         private boolean isPtrDone;
@@ -111,6 +122,23 @@ public class WidgetUtil {
         @Override
         public void onAnimationRepeat(Animator animation) {
 
+        }
+    }
+
+    public static Drawable getDrawable(Context context, int drawableId) {
+        return ResourcesCompat.getDrawable(context.getResources(), drawableId, null);
+    }
+
+    public static boolean isLinearRecyclerViewAtTop(RecyclerView recyclerView) {
+        // 不能上滚动时，已到顶
+        return ! recyclerView.canScrollVertically(-1);
+    }
+
+    public static void linearRvScrollToTop(RecyclerView recyclerView) {
+        if (((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition() < 30) {
+            recyclerView.smoothScrollToPosition(0);
+        } else {
+            recyclerView.scrollToPosition(0);
         }
     }
 }

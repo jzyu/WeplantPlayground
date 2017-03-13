@@ -5,7 +5,7 @@
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:screenOrientation">portrait</item>
-        <item name="android:windowBackground">@color/window_bg</item>
+        <item name="android:windowBackground">@color/window_bg_grey</item>
         <item name="android:textColor">@color/text_main</item>
         <item name="android:textColorLink">@color/text_link_color</item>
         <item name="android:textColorHint">@color/text_hint</item>
