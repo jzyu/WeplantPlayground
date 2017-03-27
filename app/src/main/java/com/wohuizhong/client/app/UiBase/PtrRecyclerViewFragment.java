@@ -29,7 +29,6 @@ import com.zhy.utils.L;
 import com.zhy.utils.NetUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
@@ -402,9 +401,16 @@ public abstract class PtrRecyclerViewFragment<T> extends NetFragment
             }
         } else if (rv.getLayoutManager() instanceof StaggeredGridLayoutManager) {
             StaggeredGridLayoutManager lm = (StaggeredGridLayoutManager) rv.getLayoutManager();
-            int pos[] = lm.findFirstVisibleItemPositions(null);
 
-            if (Arrays.asList(pos).contains(0)) {
+            boolean topIsVisible = false;
+            int positions[] = lm.findFirstVisibleItemPositions(null);
+            for (int position: positions) {
+                if (position == 0) {
+                    topIsVisible = true;
+                }
+            }
+
+            if (topIsVisible) {
                 lm.scrollToPosition(0);
             }
         }
