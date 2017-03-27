@@ -5,25 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PtrBubbleMsgActivity">
+    tools:context=".TestNetListActivity">
 
     <com.wohuizhong.client.app.widget.TitleBarView
         android:id="@+id/titlebar"
         style="@style/TitleBar.Back"
-        custom:title_text="Ptr bubble msg"/>
+        custom:title_text="Local List"/>
 
     <fragment
         android:id="@+id/list_fragment"
-        android:name="com.example.jzyu.weplantplayground.PtrBubbleMsgActivity$ListFragment"
+        android:name="com.example.jzyu.weplantplayground.TestNetListActivity$ListFragment"
         tools:layout="@layout/common_ptr_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <LinearLayout style="@style/TestButtonGroup" android:layout_margin="12dp">
-        <Button style="@style/TestButton" android:text="PreAppend 01" android:onClick="onClickPreAppend01"/>
-        <Button style="@style/TestButton" android:text="PreAppend 02" android:onClick="onClickPreAppend02"/>
-        <Button style="@style/TestButton" android:text="PreAppend 11" android:onClick="onClickPreAppend11"/>
-        <Button style="@style/TestButton" android:text="Append" android:onClick="onClickAppend"/>
+    <LinearLayout style="@style/TestButtonGroup" android:padding="12dp" android:background="#FFFF00">
+        <Button style="@style/TestButton" android:text="normal" android:onClick="onClickTestNormal"/>
+        <Button style="@style/TestButton" android:text="special" android:onClick="onClickTestSpecial"/>
     </LinearLayout>
 </LinearLayout>

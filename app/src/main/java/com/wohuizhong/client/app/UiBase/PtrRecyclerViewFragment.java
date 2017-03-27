@@ -3,6 +3,7 @@ package com.wohuizhong.client.app.UiBase;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ import com.zhy.utils.L;
 import com.zhy.utils.NetUtils;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
@@ -178,7 +180,7 @@ public abstract class PtrRecyclerViewFragment<T> extends NetFragment
             config.refreshErrorTipper = tipper;
             return this;
         }
-        public ConfigBuilder<T> dataSorted() {
+        public ConfigBuilder<T> dataSorted() { // 下拉刷新时不清除已有数据，只添加新的
             config.dataSorted = true;
             return this;
         }
@@ -249,7 +251,7 @@ public abstract class PtrRecyclerViewFragment<T> extends NetFragment
                 @Override
                 public void onRefreshBegin(PtrFrameLayout frame) {
                     L.v(TAG, "PtrHandler: onRefreshBegin");
-                    _loadData(false, true);
+                    loadData();
                 }
 
                 @Override
@@ -306,7 +308,7 @@ public abstract class PtrRecyclerViewFragment<T> extends NetFragment
             recyclerView.post(new Runnable() {
                 @Override
                 public void run() {
-                    _loadData(true, true);
+                    loadData();
                 }
             });
         }
@@ -323,14 +325,14 @@ public abstract class PtrRecyclerViewFragment<T> extends NetFragment
 
             loadingView.attachToParent((ViewGroup) ptrFrame.getParent(),
                     new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    loadingView.setStatusAsLoading();
-                    _loadData(false, true);
-                }
-            });
-            }
+                        @Override
+                        public void onClick(View v) {
+                            loadingView.setStatusAsLoading();
+                            loadData();
+                        }
+                    });
         }
+    }
 
     protected void resetLoadingUi(boolean isRefresh, boolean hasMore, String errorText) {
         if (loadingView.isAttached()) {
@@ -391,6 +393,23 @@ public abstract class PtrRecyclerViewFragment<T> extends NetFragment
         }
     }
 
+    private static void scrollTopIfTopVisible(RecyclerView rv) {
+        if (rv.getLayoutManager() instanceof LinearLayoutManager) {
+            LinearLayoutManager lm = (LinearLayoutManager) rv.getLayoutManager();
+
+            if (lm.findFirstVisibleItemPosition() == 0) {
+                lm.scrollToPosition(0);
+            }
+        } else if (rv.getLayoutManager() instanceof StaggeredGridLayoutManager) {
+            StaggeredGridLayoutManager lm = (StaggeredGridLayoutManager) rv.getLayoutManager();
+            int pos[] = lm.findFirstVisibleItemPositions(null);
+
+            if (Arrays.asList(pos).contains(0)) {
+                lm.scrollToPosition(0);
+            }
+        }
+    }
+
     @Override
     public void onBackTop() {
         if (! WidgetUtil.isLinearRecyclerViewAtTop(recyclerView)) {
@@ -446,9 +465,13 @@ public abstract class PtrRecyclerViewFragment<T> extends NetFragment
         }
     }
 
+    private boolean isFirstLoad = true;
     public void loadData() {
-        prepareLoadingView();
-        onLoadData(Api.get(), false, true);
+        _loadData(isFirstLoad, true);
+
+        if (isFirstLoad) {
+            isFirstLoad = false;
+        }
     }
 
     private void _loadData(final boolean isFirstLoad, final boolean isRefresh) {
@@ -479,6 +502,8 @@ public abstract class PtrRecyclerViewFragment<T> extends NetFragment
                                                 final boolean provideItemsInBackground)
     {
         http.go(httpCall, new HttpCallback<API_DATA_TYPE>() {
+            public static final String TAG = "httpGo";
+
             @Override
             public void onSuccess(final Call<API_DATA_TYPE> call, final Response<API_DATA_TYPE> response) {
                 if (provideItemsInBackground) {
@@ -512,20 +537,27 @@ public abstract class PtrRecyclerViewFragment<T> extends NetFragment
                 // update
                 if (newItems.size() > 0) {
                     if (isRefresh) {
-                        if (getItems().size() == 0 || ! config.dataSorted) {
-                            replaceAllData(newItems);
-                        } else {
-                            int appendPos = -1;
+                        if (getItems().size() > 0 && config.dataSorted) {
+                            int pos = -1;
                             if (getItems().size() > 0) {
-                                appendPos = newItems.indexOf(getItems().get(0));
+                                pos = newItems.indexOf(getItems().get(0));
                             }
 
-                            if (appendPos >= 0) {
-                                getItems().addAll(0, newItems.subList(0, appendPos));
-                                getRvAdapter().notifyItemRangeInserted(0, appendPos);
+                            if (pos == 0) {
+                                L.v(TAG, "data not changed.");
+                            } else if (pos > 0) {
+                                L.d(TAG, "find new item, count = " + pos);
+
+                                getItems().addAll(0, newItems.subList(0, pos));
+                                getRvAdapter().notifyItemRangeInserted(0, pos);
+
+                                scrollTopIfTopVisible(recyclerView);
                             } else {
-                                replaceAllData(newItems);
+                                L.e(TAG, "data has all changed !");
+                                updateAllData(newItems);
                             }
+                        } else {
+                            updateAllData(newItems);
                         }
                     } else {
                         // load more: append data
@@ -557,7 +589,7 @@ public abstract class PtrRecyclerViewFragment<T> extends NetFragment
             @Override
             public void onError(int responseCode, String errorMsg) {
                 if (isFirstLoad && responseCode == Consts.HTTP_STATUS_CODE_CACHE_IS_EMPTY) {
-                    _loadData(false, true);
+                    loadData();
                 } else {
                     resetLoadingUi(isRefresh, config.enableLoadMore, errorMsg);
                 }
@@ -565,7 +597,7 @@ public abstract class PtrRecyclerViewFragment<T> extends NetFragment
         });
     }
 
-    private void replaceAllData(List<T> newItems) {
+    private void updateAllData(List<T> newItems) {
         getItems().clear();
         getItems().addAll(newItems);
         getRvAdapter().notifyDataSetChanged();

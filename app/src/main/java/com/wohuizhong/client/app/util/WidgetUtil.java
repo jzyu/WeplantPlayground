@@ -118,4 +118,8 @@ public class WidgetUtil {
             recyclerView.scrollToPosition(0);
         }
     }
+
+    public static int getDimension(Context context, int dimenId) {
+        return context.getResources().getDimensionPixelSize(dimenId);
+    }
 }

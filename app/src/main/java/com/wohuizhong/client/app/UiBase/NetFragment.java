@@ -40,7 +40,8 @@ public class NetFragment extends BaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        http.cancelAll();
+        if (http != null)
+            http.cancelAll();
     }
 }
 

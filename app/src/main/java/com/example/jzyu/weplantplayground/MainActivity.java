@@ -14,26 +14,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
-        initView();
     }
 
-    private void initView() {
+    public void onClickLocalData(View view) {
+        startActivity(new Intent(this, TestLocalListActivity.class));
     }
 
-    public void onClickToolbarAutoHide(View view) {
-        startActivity(new Intent(this, ToolbarHiddenOfScrollviewActivity.class));
-    }
-
-    public void onClickGestureNormal(View view) {
-        startActivity(new Intent(this, GestureNormalActivity.class));
-    }
-
-    public void onClickGestureScrollView(View view) {
-        startActivity(new Intent(this, GestureScrollViewActivity.class));
-    }
-
-    public void onClickPtrBubbleMsg(View view) {
-        startActivity(new Intent(this, PtrBubbleMsgActivity.class));
+    public void onClickNetData(View view) {
+        startActivity(new Intent(this, TestNetListActivity.class));
     }
 }

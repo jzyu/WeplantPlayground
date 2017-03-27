@@ -19,10 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ToolbarHiddenOfScrollviewActivity" />
         <activity android:name=".GestureNormalActivity" />
         <activity android:name=".GestureScrollViewActivity" />
-        <activity android:name=".PtrBubbleMsgActivity" />
+        <activity android:name=".TestLocalListActivity" />
+        <activity android:name=".TestNetListActivity" />
     </application>
 
 </manifest>

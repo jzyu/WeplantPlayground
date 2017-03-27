@@ -15,12 +15,12 @@ import java.util.List;
 
 import butterknife.ButterKnife;
 
-public class PtrBubbleMsgActivity extends AppCompatActivity {
+public class TestLocalListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ptr_bubble_msg);
+        setContentView(R.layout.activity_test_local_list);
         ButterKnife.bind(this);
     }
 
@@ -31,32 +31,21 @@ public class PtrBubbleMsgActivity extends AppCompatActivity {
     private int preAppendIndex = 0;
     private int appendIndex = 0;
 
-    public void onClickPreAppend01(View view) {
-        getListFragment().onPreAppend();
-    }
-
-    public void onClickPreAppend02(View view) {
-        getListFragment().getItems().add(0, "preAppendIndex = " + preAppendIndex++);
-        getListFragment().getRvAdapter().notifyDataSetChanged();
-    }
-
     public void onClickAppend(View view) {
         getListFragment().getItems().add("appendIndex = " + appendIndex++);
         getListFragment().getRvAdapter().notifyItemInserted(getListFragment().getItems().size());
     }
 
-    public void onClickPreAppend11(View view) {
-        getListFragment().getItems().add(1, "preAppendIndex = " + preAppendIndex++);
-        getListFragment().getRvAdapter().notifyItemInserted(1);
+    public void onClickPreAppend(View view) {
+        getListFragment().onPreAppend();
     }
-
 
     public static class ListFragment extends LocalDataListFragment<String> {
 
         private List<String> texts = new ArrayList<>();
 
-        public PtrBubbleMsgActivity getAty1() {
-            return (PtrBubbleMsgActivity) getActivity();
+        public TestLocalListActivity getAty1() {
+            return (TestLocalListActivity) getActivity();
         }
 
         private void onPreAppend() {
@@ -64,10 +53,6 @@ public class PtrBubbleMsgActivity extends AppCompatActivity {
             getRvAdapter().notifyItemInserted(0);
 
             LinearLayoutManager lm = (LinearLayoutManager) recyclerView.getLayoutManager();
-            //if (lm.findFirstCompletelyVisibleItemPosition() == 0) {
-            //    lm.scrollToPosition(0);
-            ///}
-            //scrollToTop();
             lm.scrollToPosition(0);
         }
 
@@ -75,7 +60,7 @@ public class PtrBubbleMsgActivity extends AppCompatActivity {
         public void onActivityCreated(@Nullable Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
 
-            texts.addAll(Arrays.asList("one"/*, "two", "three", "four", "five", "six"*/));
+            texts.addAll(Arrays.asList("one", "two", "three"));
             init(getBuilder(R.layout.row_text, texts).build());
         }
 
