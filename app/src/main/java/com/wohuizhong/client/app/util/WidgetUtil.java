@@ -10,10 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.jzyu.weplantplayground.R;
-import com.wohuizhong.client.app.widget.MyMaterialHeader;
+import com.zhy.utils.DensityUtils;
 
 import in.srain.cube.views.ptr.PtrFrameLayout;
-import in.srain.cube.views.ptr.util.PtrLocalDisplay;
+import in.srain.cube.views.ptr.PtrUIHandler;
+import in.srain.cube.views.ptr.header.MaterialHeader;
+
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
 /**
  * Author: Administrator
@@ -50,62 +54,35 @@ public class WidgetUtil {
         return  lp.bottomMargin;
     }
 
-    public static void ptrAddUIHeader(Context context,
-                                      PtrFrameLayout ptrContainer,
-                                      SimpleListener ptrEndListener,
-                                      int bkgColorId,
-                                      int paddingBottomDp) {
-        final MyMaterialHeader header = new MaterialHeaderWithPtrEndListener(context, ptrEndListener);
-        int[] colors = context.getResources().getIntArray(R.array.google_colors);
+    /*public static PtrUIHandler newPtrUIGrowth(Context context, PtrFrameLayout ptrFrame) {
+        ptrFrame.setLoadingMinTime(2500);
+        return WidgetUtil.newPtrUIGrowth(context, null, 0, 0);
+    }*/
 
-        header.setColorSchemeColors(colors);
-        header.setLayoutParams(new PtrFrameLayout.LayoutParams(-1, -2));
-        header.setPadding(0, PtrLocalDisplay.dp2px(12), 0, PtrLocalDisplay.dp2px(
-                paddingBottomDp == 0 ? 12 : paddingBottomDp));
+    /*public static PtrUIHandler newPtrUIGrowth(Context context,
+                                              SimpleListener ptrDoneListener,
+                                              int bkgColorId, int bottomPaddingDp) {
+        PtrHeaderGrowth header = new PtrHeaderGrowth(context);
+
+        header.setPtrDoneListener(ptrDoneListener);
+        header.setPadding(0, DensityUtils.dp2px(context, 12), 0, DensityUtils.dp2px(context,
+                bottomPaddingDp == 0 ? 12 : bottomPaddingDp));
         if (bkgColorId > 0) {
             header.setBackgroundColor(CompatUtil.getColor(context, bkgColorId));
         }
+
+        return header;
+    }*/
+
+    public static PtrUIHandler newPtrUIMaterial(Context context, PtrFrameLayout ptrContainer) {
+        MaterialHeader header = new MaterialHeader(context);
+
+        header.setLayoutParams(new PtrFrameLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT));
+        header.setPadding(0, DensityUtils.dp2px(context, 12), 0, DensityUtils.dp2px(context, 12));
         header.setPtrFrameLayout(ptrContainer);
+        header.setColorSchemeColors(context.getResources().getIntArray(R.array.google_colors));
 
-        //ptrContainer.setLoadingMinTime(500);         //default is 500ms
-        //ptrContainer.setDurationToCloseHeader(1000); //default is 1000ms
-        ptrContainer.setHeaderView(header);
-        ptrContainer.addPtrUIHandler(header);
-    }
-
-
-    public static void ptrAddUIHeader(Context context, PtrFrameLayout ptrContainer) {
-        ptrAddUIHeader(context, ptrContainer, null, 0, 0);
-    }
-
-    private static class MaterialHeaderWithPtrEndListener extends MyMaterialHeader {
-
-        private SimpleListener listener;
-        private boolean isPtrDone;
-
-        public MaterialHeaderWithPtrEndListener(Context context, SimpleListener listener) {
-            super(context);
-            this.listener = listener;
-        }
-
-        @Override
-        public void onUIReset(PtrFrameLayout frame) {
-            super.onUIReset(frame);
-
-            if (isPtrDone && listener != null) {
-                listener.callback();
-            }
-            isPtrDone = false;
-        }
-
-
-
-        @Override
-        public void onUIRefreshComplete(PtrFrameLayout frame) {
-            super.onUIRefreshComplete(frame);
-
-            isPtrDone = true;
-        }
+        return header;
     }
 
     public abstract static class AnimatorEndListener implements Animator.AnimatorListener {

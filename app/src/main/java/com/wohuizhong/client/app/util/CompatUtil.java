@@ -12,13 +12,17 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 
+import com.zhy.utils.L;
+
 public class CompatUtil {
+    public static final String TAG = CompatUtil.class.getSimpleName();
 
     public static void scheduleStartPostponedTransition(final Activity activity, final View sharedElement) {
         sharedElement.getViewTreeObserver().addOnPreDrawListener(
                 new ViewTreeObserver.OnPreDrawListener() {
                     @Override
                     public boolean onPreDraw() {
+                        L.d(TAG, "onPreDraw - scheduleStartPostponedTransition");
                         sharedElement.getViewTreeObserver().removeOnPreDrawListener(this);
                         ActivityCompat.startPostponedEnterTransition(activity);
                         return true;
@@ -57,5 +61,17 @@ public class CompatUtil {
         } else {
             v.setBackgroundDrawable(drawable);
         }
+    }
+
+    public static boolean isActivityDestroyed(Activity aty) {
+        if (aty.isFinishing())
+            return true;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            if (aty.isDestroyed())
+                return true;
+        }
+
+        return false;
     }
 }

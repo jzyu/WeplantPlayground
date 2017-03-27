@@ -1,5 +1,20 @@
 <resources>
 
+    <style name="ThemeDialog" parent="android:Theme.Dialog">
+        <item name="android:textColor">@color/text_main</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item> <!--不加这行宽度不能占全屏-->
+    </style>
+
+    <style name="ThemeDialogLoading" parent="ThemeDialog">
+        <item name="android:backgroundDimEnabled">false</item>  <!-- 背景是否模糊显示 -->
+        <item name="android:windowBackground">@drawable/bg_toast</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
     <style name="TestButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -86,5 +101,14 @@
     <style name="WrapWrap">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="TvEmptyTip">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/text_minor</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:text">暂无内容</item>
     </style>
 </resources>

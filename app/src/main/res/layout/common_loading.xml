@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <LinearLayout
+        android:id="@+id/container_loading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        tools:visibility="invisible">
+        <ProgressBar
+            style="@style/progressbar_circle"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:indeterminateDuration="1500"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:lineSpacingExtra="6dp"
+            android:layout_marginLeft="@dimen/margin_h"
+            android:textColor="@color/text_minor"
+            android:textSize="16dp"
+            android:text = "努力加载中..." />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/container_retry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:visibility="visible">
+        <TextView
+            android:id="@+id/tv_error_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="6dp"
+            android:textColor="@color/text_minor"
+            android:textSize="16dp"
+            android:textAlignment="center"
+            tools:text = "无法获取数据 \n 请连接网络后重试" />
+        <Button
+            android:id="@+id/btn_retry"
+            android:layout_width="140dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:text="刷新"
+            android:textSize="16dp"
+            android:textColor="@color/text_main"
+            android:background="#FFFF00"/>
+    </LinearLayout>
+</RelativeLayout>
