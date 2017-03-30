@@ -25,6 +25,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickMisc(View view) {
-        //startActivity(new Intent(this, Test));
+        startActivity(new Intent(this, TestMiscActivity.class));
     }
 }
