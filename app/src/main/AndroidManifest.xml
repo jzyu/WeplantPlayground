@@ -23,6 +23,7 @@
         <activity android:name=".GestureScrollViewActivity" />
         <activity android:name=".TestLocalListActivity" />
         <activity android:name=".TestNetListActivity" />
+        <activity android:name=".TestCoordinateActivity"></activity>
     </application>
 
 </manifest>

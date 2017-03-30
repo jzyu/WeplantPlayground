@@ -14,6 +14,10 @@
         app:title_text="PtrListFragment"/>
 
     <LinearLayout style="@style/TestButtonGroup" android:layout_marginTop="20dp">
+        <Button style="@style/TestButton" android:text="Misc" android:onClick="onClickMisc"/>
+    </LinearLayout>
+
+    <LinearLayout style="@style/TestButtonGroup" android:layout_marginTop="20dp">
         <Button style="@style/TestButton" android:text="LocalData" android:onClick="onClickLocalData"/>
         <Button style="@style/TestButton" android:text="NetData" android:onClick="onClickNetData"/>
     </LinearLayout>

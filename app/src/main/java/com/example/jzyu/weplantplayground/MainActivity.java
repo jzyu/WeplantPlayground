@@ -23,4 +23,8 @@ public class MainActivity extends AppCompatActivity {
     public void onClickNetData(View view) {
         startActivity(new Intent(this, TestNetListActivity.class));
     }
+
+    public void onClickMisc(View view) {
+        //startActivity(new Intent(this, Test));
+    }
 }
