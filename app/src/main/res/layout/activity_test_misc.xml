@@ -8,19 +8,11 @@
     android:gravity="center"
     tools:context="com.example.jzyu.weplantplayground.TestMiscActivity">
 
-    <FrameLayout
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingRight="10dp"
-        android:background="@drawable/pm_msg_me_text">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:text="This is a messagedfdfdsfdsfdsf\nfdsfsdffdsffsdfsdfdsfdsfsdfsfsfsfsfsfsfsdf\nfsfsdfsdfdsfdsfsfsfsfsfsf"
-
-            />
-    </FrameLayout>
+        android:text="this"
+        android:background="@drawable/pm_msg_me_text"
+        />
 
 </LinearLayout>
