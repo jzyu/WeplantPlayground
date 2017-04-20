@@ -2,12 +2,14 @@ package com.wohuizhong.client.app.util;
 
 import android.animation.Animator;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.jzyu.weplantplayground.R;
 import com.zhy.utils.DensityUtils;
@@ -121,5 +123,12 @@ public class WidgetUtil {
 
     public static int getDimension(Context context, int dimenId) {
         return context.getResources().getDimensionPixelSize(dimenId);
+    }
+
+    public static TextView tvSetBold(TextView textView, boolean isBold) {
+        textView.setTypeface(
+                isBold ? textView.getTypeface() : null,
+                isBold ? Typeface.BOLD : Typeface.NORMAL);
+        return textView;
     }
 }
